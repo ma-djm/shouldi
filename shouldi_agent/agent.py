@@ -10,13 +10,7 @@ import os
 from typing import Optional
 
 
-def get_current_date_time() -> str:
-    """
-    Returns the current date and time in a human-readable format.
-    Example: Tuesday, August 19, 2025 - 10:30 PM
-    """
-    print("* In get_current_date_time()")
-    return datetime.now().strftime("%A, %B %d, %Y - %I:%M %p")
+
 
 def _make_weather_api_request(endpoint: str, params: dict) -> Optional[dict]:
     """
@@ -39,6 +33,11 @@ def _make_weather_api_request(endpoint: str, params: dict) -> Optional[dict]:
         response = requests.get(url, params=params)
         response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
         return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP Error fetching data from {url}: {e}")
+        if e.response:
+            print(f"Response: {e.response.text}")
+        return None
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from {url}: {e}")
         return None
@@ -60,6 +59,8 @@ def get_current_weather(location: str) -> Optional[dict]:
                         - METAR code (e.g., "metar:EGLL")
                         - IP address (e.g., "100.0.0.1")
                         - `auto:ip` to auto-detect the user's location from their IP.
+
+                        If you get an error, try using ZIP code or postcode.
 
     Returns:
         dict: A dictionary containing the location and current weather data.
@@ -137,6 +138,9 @@ def get_weather_forecast(location: str, days: int) -> Optional[dict]:
                         - METAR code (e.g., "metar:EGLL")
                         - IP address (e.g., "100.0.0.1")
                         - `auto:ip` to auto-detect the user's location from their IP.
+
+                        If you get an error, try using ZIP code or postcode.
+
         days (int): The number of days to forecast, from 1 to 14.
 
     Returns:
@@ -220,6 +224,9 @@ def get_astronomy(location: str, dt: Optional[str] = None) -> Optional[dict]:
                         - METAR code (e.g., "metar:EGLL")
                         - IP address (e.g., "100.0.0.1")
                         - `auto:ip` to auto-detect the user's location from their IP.
+                        
+                        If you get an error, try using ZIP code or postcode.
+
         dt (str, optional): The date in "YYYY-MM-DD" format. Defaults to today.
 
     Returns:
@@ -250,6 +257,14 @@ def get_astronomy(location: str, dt: Optional[str] = None) -> Optional[dict]:
     return _make_weather_api_request("astronomy.json", params)
 
 
+def get_current_date_time() -> str:
+    """
+    Returns the current date and time in a human-readable format.
+    Example: Tuesday, August 19, 2025 - 10:30 PM
+    """
+    print("* In get_current_date_time()")
+    return datetime.now().strftime("%A, %B %d, %Y - %I:%M %p")
+
 
 
 fact_finder_agent = LlmAgent(
@@ -276,7 +291,6 @@ should_i_agent = LlmAgent(
     description="This agent accesses current weather conditions, future weather conditions, and astronomical conditions, to help advise a user on whether they should do a certain activity.",
     output_key="advice",
 
-#    tools=[agent_tool.AgentTool(agent=current_weather_agent), agent_tool.AgentTool(agent=weather_forecast_agent)],
     tools=[get_current_weather, get_weather_forecast, get_current_date_time, get_astronomy,
            agent_tool.AgentTool(agent=fact_finder_agent)],
 
@@ -303,6 +317,7 @@ request_clarifier_agent = LlmAgent(
     name="request_clarifier",
     model="gemini-2.5-flash",
     description="This agent chats with the user until it has enough information to pass along to the should_i agent.",
+    output_key="prompt",
     sub_agents=[should_i_agent],
     instruction=
 """
@@ -316,6 +331,8 @@ You are a friendly chatbot. Your job is to have a conversation with a user in or
   - Confirm with the user that you have it right
   - Pass a summary on to should_i_agent
  
+DO NOT pass the request on to the next agent until you have all of the information above.
+
  """,
 
 )
