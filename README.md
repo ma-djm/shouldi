@@ -2,7 +2,7 @@
 An example project to demonstrate an Agentic AI solution using the Google Agent Development Kit to retrieve and process useful informaiton from an external API.
 
 ## Introduction
-A multi-agent system built on the Google Agent Development Kit. It uses weather information, astronomical data, and Google Search to give you advice on whether it's a good idea to do something or not. 
+A multi-agent system built on the Google Agent Development Kit. It uses weather information, astronomical data, and Google Search to give you advice on whether it's a good idea to do something or not. Works best with outdoor activies, for obvious reasons.
 
 It is designed to demonstrate this common pattern:
 - Chatbot clarifies the user's intent
@@ -20,7 +20,7 @@ Things to observe:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/shouldi.git
+   git clone https://github.com/ma-djm/shouldi.git
    cd shouldi
    ```
 
