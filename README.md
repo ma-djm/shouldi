@@ -11,7 +11,7 @@ It is designed to demonstrate this common pattern:
 
 Things to observe:
  - The agent instructions themselves in agent.py are simple and high-level. The agent itself is given wide latitude to make decisions about how to carry out requests.
- - This is made possible, in part, by the verbose docstring annotations you'll see in the tools (functions) that call the Weather.com APIs. The agents read those docstrings to determine which tools to call. The functions themselves are just a few lines of code.
+ - This is made possible, in part, by the verbose docstring annotations you'll see in the tools (functions) that call the WeatherAPI.com APIs. The agents read those docstrings to determine which tools to call. The functions themselves are just a few lines of code.
 
 
 
