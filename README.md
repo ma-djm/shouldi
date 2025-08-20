@@ -5,7 +5,7 @@ Ever wondered if the weather will hold up for your plans? `ShouldI` is a convers
 Built as a demo of the Google Agent Development Kit (ADK), this project demonstrates a multi-agent pattern:
 
 1.  A user-facing **"Clarifier"** agent chats with you to understand what you want to do, when, and where.
-2.  Once it has the details, it passes the request to a **"Should I?"** agent that uses a suite of tools—like weather forecasts, astronomy data, and Google Search—to research the answer.
+2.  Once it has the details, it passes the request to a **"Should I?"** agent that uses a suite of tools—like weather forecasts, astronomy data, and Google Search—to research the answer. These tools, in turn, make calls to public APIs on the web.
 3.  Finally, it analyzes the data and gives you a detailed recommendation.
 
 ### See It in Action
