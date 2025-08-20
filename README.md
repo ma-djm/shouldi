@@ -2,7 +2,7 @@
 
 Ever wondered if the weather will hold up for your plans? `ShouldI` is a conversational AI agent that gives you tailored advice on whether to go ahead with a specific activity.
 
-Built with the Google Agent Development Kit (ADK), this project demonstrates a powerful multi-agent pattern:
+Built as a demo of the Google Agent Development Kit (ADK), this project demonstrates a multi-agent pattern:
 
 1.  A user-facing **"Clarifier"** agent chats with you to understand what you want to do, when, and where.
 2.  Once it has the details, it passes the request to a **"Should I?"** agent that uses a suite of tools—like weather forecasts, astronomy data, and Google Search—to research the answer.
