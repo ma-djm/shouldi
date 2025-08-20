@@ -9,9 +9,44 @@ It is designed to demonstrate this common pattern:
 - Once clarified, it is passed on to another agent to execute
 - That agent uses a variety of tools to carry out the request, including external API calls
 
+Here is an example of the agent in action:
+> **[user]:** I have an activity planned for this Thursday, but I'm worried about the weather.
+>
+> **[request_clarifier]:** I can help with that! What activity are you planning for Thursday, and where will it be taking place?
+>
+> **[user]:** I want to ride the Pike's Peak Cog Railway
+>
+> **[request_clarifier]:** Okay, so you want to ride the Pike's Peak Cog Railway this Thursday. Where is the Pike's Peak Cog Railway located?
+>
+> **[user]:** Colorado Springs
+>
+> **[request_clarifier]:** So, just to confirm, you want to know if you should ride the Pike's Peak Cog Railway in Colorado Springs this Thursday, correct?
+>
+> **[user]:** Yes
+>
+> ```
+> * In get_current_date_time()
+> * In get_weather_forecast(location: Colorado Springs, days: 2)
+> ```
+>
+> **[should_i]:**
+> **Tool Use:**
+> - get_current_date_time: I used this tool to determine that "this Thursday" is August 21, 2025. This allowed me to look at the correct day in the forecast.
+> - get_weather_forecast: I used this tool to get the weather forecast for Colorado Springs for Thursday. The key information I obtained was that the high temperature will be 91.8°F, the low will be 58.6°F, it will be sunny with no chance of rain, and the maximum wind speed will be 13.4 mph.
+> - fact_finder: I used this tool to learn about the temperature difference between Colorado Springs and the summit of Pikes Peak. I found out that the summit is typically 30°F cooler than the base.
+>
+> **Analysis:**
+> The weather forecast for your trip to the Pike's Peak Cog Railway on Thursday is excellent. It will be a sunny day with no chance of rain, which means you should have fantastic, clear views from the summit. The winds are also expected to be mild. The most important factor to consider is the significant temperature difference between the base and the summit. While it will be a warm day in Colorado Springs, the summit will be about 30 degrees cooler.
+>
+> **Advice:**
+> Yes, you should definitely go on your Pike's Peak Cog Railway ride this Thursday. The weather conditions are ideal for this activity, with plenty of sunshine and no rain in the forecast, which will make for breathtaking views.
+>
+> However, be sure to prepare for the temperature change. I recommend dressing in layers. While it may be warm at the base, it will be significantly cooler at the 14,115-foot summit. A light jacket or a fleece would be a good idea to bring with you to ensure you are comfortable while enjoying the stunning panorama.
+
 Things to observe:
  - The agent instructions themselves in agent.py are simple and high-level. The agent itself is given wide latitude to make decisions about how to carry out requests.
  - This is made possible, in part, by the verbose docstring annotations you'll see in the tools (functions) that call the WeatherAPI.com APIs. The agents read those docstrings to determine which tools to call. The functions themselves are just a few lines of code.
+ - As this is a demonstration project, the output includes information about the tools that were called and the Agents' rationale. Autonomous systems in production would more likely render their output as discreen JSON fields in the session state.
 
 
 

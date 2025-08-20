@@ -301,7 +301,7 @@ Your process is:
 
 request_clarifier_agent = LlmAgent(
     name="request_clarifier",
-    model="gemini-2.5-pro",
+    model="gemini-2.5-flash",
     description="This agent chats with the user until it has enough information to pass along to the should_i agent.",
     sub_agents=[should_i_agent],
     instruction=
