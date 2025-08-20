@@ -1,15 +1,17 @@
-# Should I?
-An example project to demonstrate an Agentic AI solution using the Google Agent Development Kit to retrieve and process useful informaiton from an external API.
+# ShouldI
 
-## Introduction
-A multi-agent system built on the Google Agent Development Kit. It uses weather information, astronomical data, and Google Search to give you advice on whether it's a good idea to do something or not. Works best with outdoor activies, for obvious reasons.
+Ever wondered if the weather will hold up for your plans? `ShouldI` is a conversational AI agent that gives you tailored advice on whether to go ahead with a specific activity.
 
-It is designed to demonstrate this common pattern:
-- Chatbot clarifies the user's intent
-- Once clarified, it is passed on to another agent to execute
-- That agent uses a variety of tools to carry out the request, including external API calls
+Built with the Google Agent Development Kit (ADK), this project demonstrates a powerful multi-agent pattern:
 
-Here is an example of the agent in action:
+1.  A user-facing **"Clarifier"** agent chats with you to understand what you want to do, when, and where.
+2.  Once it has the details, it passes the request to a **"Should I?"** agent that uses a suite of tools—like weather forecasts, astronomy data, and Google Search—to research the answer.
+3.  Finally, it analyzes the data and gives you a detailed recommendation.
+
+### See It in Action
+
+Here is an example of the agent helping a user plan a trip:
+
 > **[user]:** I have an activity planned for this Thursday, but I'm worried about the weather.
 >
 > **[request_clarifier]:** I can help with that! What activity are you planning for Thursday, and where will it be taking place?
@@ -43,10 +45,13 @@ Here is an example of the agent in action:
 >
 > However, be sure to prepare for the temperature change. I recommend dressing in layers. While it may be warm at the base, it will be significantly cooler at the 14,115-foot summit. A light jacket or a fleece would be a good idea to bring with you to ensure you are comfortable while enjoying the stunning panorama.
 
-Things to observe:
- - The agent instructions themselves in agent.py are simple and high-level. The agent itself is given wide latitude to make decisions about how to carry out requests.
- - This is made possible, in part, by the verbose docstring annotations you'll see in the tools (functions) that call the WeatherAPI.com APIs. The agents read those docstrings to determine which tools to call. The functions themselves are just a few lines of code.
- - As this is a demonstration project, the output includes information about the tools that were called and the Agents' rationale. Autonomous systems in production would more likely render their output as discreen JSON fields in the session state.
+### Key Concepts for Developers
+
+This project is a great way to learn the Google ADK. A few things to observe in the code:
+
+-   **Simple, High-Level Instructions:** The prompts for the agents in `agent.py` are straightforward. The agent has wide latitude to decide which tools to use to carry out the request.
+-   **Docstrings as Tool Definitions:** The tools (the Python functions that call the WeatherAPI) have highly detailed docstrings. The ADK uses these to help the agent understand how to use the tool and what to expect in return. Good documentation directly improves agent performance.
+-   **Debugging Output:** As a demo, the agent prints the tools it's using and its reasoning. In a production app, this data would more likely be structured (e.g., as JSON) and saved to the session state.
 
 
 
