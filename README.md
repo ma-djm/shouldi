@@ -12,6 +12,7 @@ Built as a demo of the Google Agent Development Kit (ADK), this project demonstr
 
 Here is an example of the agent helping a user plan a trip:
 
+
 > **[user]:** I have an activity planned for this Thursday, but I'm worried about the weather.
 >
 > **[request_clarifier]:** I can help with that! What activity are you planning for Thursday, and where will it be taking place?
@@ -26,16 +27,16 @@ Here is an example of the agent helping a user plan a trip:
 >
 > **[user]:** Yes
 >
-> ```
+> 
 > * In get_current_date_time()
 > * In get_weather_forecast(location: Colorado Springs, days: 2)
-> ```
+> 
 >
 > **[should_i]:**
 > **Tool Use:**
-> - get_current_date_time: I used this tool to determine that "this Thursday" is August 21, 2025. This allowed me to look at the correct day in the forecast.
-> - get_weather_forecast: I used this tool to get the weather forecast for Colorado Springs for Thursday. The key information I obtained was that the high temperature will be 91.8°F, the low will be 58.6°F, it will be sunny with no chance of rain, and the maximum wind speed will be 13.4 mph.
-> - fact_finder: I used this tool to learn about the temperature difference between Colorado Springs and the summit of Pikes Peak. I found out that the summit is typically 30°F cooler than the base.
+> * get_current_date_time: I used this tool to determine that "this Thursday" is August 21, 2025. This allowed me to look at the correct day in the forecast.
+> * get_weather_forecast: I used this tool to get the weather forecast for Colorado Springs for Thursday. The key information I obtained was that the high temperature will be 91.8°F, the low will be 58.6°F, it will be sunny with no chance of rain, and the maximum wind speed will be 13.4 mph.
+> * fact_finder: I used this tool to learn about the temperature difference between Colorado Springs and the summit of Pikes Peak. I found out that the summit is typically 30°F cooler than the ase.
 >
 > **Analysis:**
 > The weather forecast for your trip to the Pike's Peak Cog Railway on Thursday is excellent. It will be a sunny day with no chance of rain, which means you should have fantastic, clear views from the summit. The winds are also expected to be mild. The most important factor to consider is the significant temperature difference between the base and the summit. While it will be a warm day in Colorado Springs, the summit will be about 30 degrees cooler.
