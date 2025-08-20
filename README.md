@@ -1,4 +1,4 @@
-# ShouldI
+# ShouldI (Should I?)
 
 Ever wondered if the weather will hold up for your plans? `ShouldI` is a conversational AI agent that gives you tailored advice on whether to go ahead with a specific activity.
 
